@@ -2,6 +2,8 @@
 
 include_once('init.php');
 
+require __DIR__ . '/vendor/autoload.php';
+
 use System\Exceptions\Exc404;
 use System\Router;
 use System\ModulesDispatcher;
@@ -36,5 +38,5 @@ catch(Exc404 $e){
 	echo '404'; 
 }
 catch(Throwable $e){
-	echo 'error - ' . $e->getMessage();
+	echo 'error - ' . $e->getMessage() . ' ' . $e->getFile() . ' ' . $e->getLine();
 }
