@@ -22,12 +22,8 @@ class Index extends BaseController{
 	}
 
 	public function index(){
-		$books = $this->modelBooks->all();
-		
 		$this->title = 'Book Page';
-		$this->content = Template::render(__DIR__ . '/../Views/v_all.php', [
-			'books' => $books
-		]);
+		$this->content = Template::render(__DIR__ . '/../Views/v_all.php');
 	}
 
   public function getAuthors() {
