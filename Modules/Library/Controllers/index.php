@@ -34,20 +34,25 @@ class Index extends BaseController{
             'success' => true,
             'data' => $authors
         ]);
+        exit;
+
   }
 
   public function getGenres() {
     $genres = $this->modelGenres->all();
 		
 		header('Content-Type: application/json');
-        echo json_encode([
-            'success' => true,
-            'data' => $genres
-        ]);
+    echo json_encode([
+        'success' => true,
+        'data' => $genres
+    ]);
+    exit;
+
   }
 
-  public function searchAction($request) {
-    $data = json_decode($request->getBody(), true);
+  public function searchAction() {
+    $json = file_get_contents('php://input');
+    $data = json_decode($json, true);
 
     $title = $data['title'] ?? null;
     $authorIds = $data['authors'] ?? [];
@@ -60,6 +65,7 @@ class Index extends BaseController{
         'success' => true,
         'data' => $books
     ]);
+    exit;
   }
 
   public function parseBooks() {
@@ -74,6 +80,7 @@ class Index extends BaseController{
             'message' => 'База успешно обновлена',
             'count' => $parser->getLastInsertCount()
         ]);
+        exit;
     } catch (ExcAccess $e) {
         http_response_code(500);
         echo json_encode([

@@ -93,10 +93,18 @@ class Parser {
     }
     
     private function parseGenres(Crawler $book): array {
-        $html = $book->filter('div.col-12:not([class*=" "])')->html();
-        return preg_match_all('/<a[^>]*>(.*?)<\/a>/', $html, $matches) 
-            ? array_map('trim', $matches[1]) 
-            : [];
+        $text = $book->filterXPath('//*[contains(text(), "Жанры:")]')->text();
+        
+        if (preg_match('/Жанры:\s*(.+)/u', $text, $matches)) {
+            return array_filter(
+                preg_split('/\s*[,\/]\s*/u', trim($matches[1])),
+                function($genre) {
+                    return !empty($genre);
+                }
+            );
+        }
+        
+        return [];
     }
     
     private function parseAuthors(Crawler $book): array {
