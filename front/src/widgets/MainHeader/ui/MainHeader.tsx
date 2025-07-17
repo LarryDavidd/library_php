@@ -2,22 +2,15 @@ import { SimpleInput } from "@shared/ui-kits/inputs";
 import styles from "./styles.module.scss";
 import cn from "classnames";
 import { SimpleButton } from "@shared/ui-kits/buttons";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import type { AppDispatch } from "@shared/store/store";
 import { setTitle } from "@shared/store/slices/filter.slice";
-import { fetchBooks } from "@shared/store/thunks";
-import type { RootState } from "@shared/store/store";
 
 export const MainHeader = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const filterState = useSelector((state: RootState) => state.filter);
 
   const handleSearch = (query: string) => {
     dispatch(setTitle(query));
-  };
-
-  const handleSearchClick = () => {
-    dispatch(fetchBooks(filterState));
   };
 
   return (
@@ -30,11 +23,12 @@ export const MainHeader = () => {
         </div>
         <nav className={styles.header__navigation}>
           <SimpleInput
-            onSearch={handleSearch}
+            onChange={() => {}}
+            onBlur={handleSearch}
             placeholder="Find books..."
             debounce={400}
           />
-          <SimpleButton text="Search" onClick={handleSearchClick} />
+          <SimpleButton text="Search" onClick={() => {}} />
         </nav>
       </div>
     </header>

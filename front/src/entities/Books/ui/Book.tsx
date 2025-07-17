@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./styles.module.scss";
+import { SimpleButton } from "../../../shared/ui-kits/buttons";
 
 interface BookCardProps {
   book: {
@@ -37,7 +38,7 @@ export const BookCard: React.FC<BookCardProps> = ({ book }) => {
             : book.description}
         </p>
 
-        <button className={styles["book-card__button"]}>Подробнее</button>
+        <SimpleButton onClick={() => {}} text="More ditales" />
       </div>
     </article>
   );

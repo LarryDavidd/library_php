@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BookCard } from "./Book";
 import styles from "./styles.module.scss";
-import { fetchBooks } from "../../../shared/store/thunks";
-import type { RootState } from "../../../shared/store/store";
+import { fetchBooks } from "@shared/store/thunks";
+import type { RootState } from "@shared/store/store";
 
 export const BookList = () => {
   const dispatch = useDispatch();
@@ -14,7 +14,6 @@ export const BookList = () => {
     (state: RootState) => state.filter
   );
 
-  // Загружаем книги при монтировании и изменении фильтров
   useEffect(() => {
     dispatch(fetchBooks({ authors, genres, title }));
   }, [authors, genres, title, dispatch]);

@@ -69,24 +69,27 @@ class Index extends BaseController{
   }
 
   public function parseBooks() {
+    $json = file_get_contents('php://input');
+    $data = json_decode($json, true);
+    $pages_num = $data['pages_num'] ?? 2;
     try {
       $parser = new Parser();
-        $parser->clearDatabase();
-        $parser->parseAndInsertData();
-        
-        header('Content-Type: application/json');
-        echo json_encode([
-            'success' => true,
-            'message' => 'База успешно обновлена',
-            'count' => $parser->getLastInsertCount()
-        ]);
-        exit;
+      $parser->clearDatabase();
+      $parser->parseAndInsertData($pages_num);
+      
+      header('Content-Type: application/json');
+      echo json_encode([
+          'success' => true,
+          'message' => 'База успешно обновлена',
+          'count' => $parser->getLastInsertCount()
+      ]);
+      exit;
     } catch (ExcAccess $e) {
-        http_response_code(500);
-        echo json_encode([
-            'success' => false,
-            'message' => 'Ошибка при парсинге: ' . $e->getMessage()
-        ]);
+      http_response_code(500);
+      echo json_encode([
+          'success' => false,
+          'message' => 'Ошибка при парсинге: ' . $e->getMessage()
+      ]);
     }
 }
 }

@@ -1,0 +1,16 @@
+.numberSection {
+  padding: 16px;
+  margin: 20px 0;
+  background: #f5f5f5;
+  border-radius: 8px;
+
+  &__controls {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+    }
+  }
+}
