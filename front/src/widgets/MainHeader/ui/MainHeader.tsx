@@ -22,12 +22,7 @@ export const MainHeader = () => {
           </a>
         </div>
         <nav className={styles.header__navigation}>
-          <SimpleInput
-            onChange={() => {}}
-            onBlur={handleSearch}
-            placeholder="Find books..."
-            debounce={400}
-          />
+          <SimpleInput onBlur={handleSearch} placeholder="Find books..." />
           <SimpleButton text="Search" onClick={() => {}} />
         </nav>
       </div>

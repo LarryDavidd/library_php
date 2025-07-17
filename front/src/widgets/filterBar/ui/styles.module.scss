@@ -5,24 +5,6 @@
   padding: 20px;
   margin-bottom: 20px;
 
-  &__search {
-    margin-bottom: 20px;
-  }
-
-  &__input {
-    width: 100%;
-    padding: 10px 15px;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: border-color 0.3s;
-
-    &:focus {
-      outline: none;
-      border-color: #4285f4;
-    }
-  }
-
   &__sections {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -39,11 +21,23 @@
     border-radius: 6px;
   }
 
+  &__spoiler-button {
+    background: none;
+    border: none;
+    padding: 0;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+  }
+
   &__title {
     margin-top: 0;
     margin-bottom: 15px;
     font-size: 18px;
     color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
   &__options {

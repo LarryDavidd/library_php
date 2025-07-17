@@ -3,8 +3,11 @@ import { SimpleInput } from "@shared/ui-kits/inputs";
 import { SimpleButton } from "@shared/ui-kits/buttons";
 import styles from "./styles.module.scss";
 import { fetchInitialData } from "@shared/store/thunks";
+import { useDispatch } from "react-redux";
 
 export const ParseSection = () => {
+  const dispatch = useDispatch();
+
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -47,7 +50,7 @@ export const ParseSection = () => {
 
       const data = await response.json();
       setResult(data.message);
-      fetchInitialData();
+      dispatch(fetchInitialData());
     } catch (err) {
       setError(err instanceof Error ? err.message : "Unknown error");
     } finally {

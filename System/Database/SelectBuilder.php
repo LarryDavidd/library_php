@@ -68,7 +68,6 @@ class SelectBuilder {
     public function __toString(): string {
         $activeCommands = [];
         
-        // Обработка JOIN отдельно, так как их может быть несколько
         if (!empty($this->addons['join'])) {
             $activeCommands[] = implode(' ', $this->addons['join']);
         }

@@ -21,11 +21,6 @@ class Index extends BaseController{
 		$this->modelGenres = ModelsGenres::getInstance();
 	}
 
-	public function index(){
-		$this->title = 'Book Page';
-		$this->content = Template::render(__DIR__ . '/../Views/v_all.php');
-	}
-
   public function getAuthors() {
     $authors = $this->modelAuthors->all();
 		
