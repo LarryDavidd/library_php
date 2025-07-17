@@ -29,7 +29,7 @@ export const fetchBooks =
     try {
       dispatch(fetchBooksStart());
       const response = await fetch(
-        "http://localhost/library_php/api/books/search",
+        import.meta.env.VITE_BASE_URL + "/api/books/search",
         {
           method: "POST",
           headers: {
@@ -66,7 +66,9 @@ export const fetchAuthors =
   async (dispatch: AppDispatch): Promise<void> => {
     try {
       dispatch(fetchAuthorsStart());
-      const response = await fetch("http://localhost/library_php/api/authors");
+      const response = await fetch(
+        import.meta.env.VITE_BASE_URL + "/api/authors"
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -91,7 +93,9 @@ export const fetchGenres =
   async (dispatch: AppDispatch): Promise<void> => {
     try {
       dispatch(fetchGenresStart());
-      const response = await fetch("http://localhost/library_php/api/genres");
+      const response = await fetch(
+        import.meta.env.VITE_BASE_URL + "/api/genres"
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);

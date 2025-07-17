@@ -8,7 +8,6 @@ use Modules\Library\Models\Authors as ModelsAuthors;
 use Modules\Library\Models\Genres as ModelsGenres;
 use Modules\Library\Services\Parser;
 use System\Exceptions\ExcAccess;
-use System\Template;
 
 class Index extends BaseController{
 	protected ModelsBooks $modelBooks;

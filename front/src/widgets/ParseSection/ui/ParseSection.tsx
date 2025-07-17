@@ -34,15 +34,18 @@ export const ParseSection = () => {
       setIsLoading(true);
       setError(null);
 
-      const response = await fetch("http://localhost/library_php/api/parse", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          pages_num: numericValue,
-        }),
-      });
+      const response = await fetch(
+        import.meta.env.VITE_BASE_URL + "/api/parse",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            pages_num: numericValue,
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
