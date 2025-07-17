@@ -66,7 +66,7 @@ export const fetchAuthors =
   async (dispatch: AppDispatch): Promise<void> => {
     try {
       dispatch(fetchAuthorsStart());
-      const response = await fetch("/library_php/api/authors");
+      const response = await fetch("http://localhost/library_php/api/authors");
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -91,7 +91,7 @@ export const fetchGenres =
   async (dispatch: AppDispatch): Promise<void> => {
     try {
       dispatch(fetchGenresStart());
-      const response = await fetch("/library_php/api/genres");
+      const response = await fetch("http://localhost/library_php/api/genres");
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);

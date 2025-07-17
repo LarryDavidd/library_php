@@ -4,9 +4,9 @@ import cn from "classnames";
 import { SimpleButton } from "@shared/ui-kits/buttons";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch } from "@shared/store/store";
-import type { RootState } from "@reduxjs/toolkit/query";
 import { setTitle } from "@shared/store/slices/filter.slice";
 import { fetchBooks } from "@shared/store/thunks";
+import type { RootState } from "@shared/store/store";
 
 export const MainHeader = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -14,8 +14,6 @@ export const MainHeader = () => {
 
   const handleSearch = (query: string) => {
     dispatch(setTitle(query));
-
-    dispatch(fetchBooks({ ...filterState, title: query }));
   };
 
   const handleSearchClick = () => {

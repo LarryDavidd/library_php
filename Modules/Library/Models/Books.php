@@ -39,13 +39,27 @@ class Books extends Model
         }
 
         if (!empty($authorIds)) {
-            $placeholders = implode(',', array_fill(0, count($authorIds), '?'));
-            $query->where("a.id IN ($placeholders)", $authorIds);
+            $authorParams = [];
+            foreach ($authorIds as $i => $id) {
+                $param = ":author_" . $i;
+                $authorParams[$param] = $id;
+            }
+            $query->where(
+                "a.id IN (" . implode(',', array_keys($authorParams)) . ")", 
+                $authorParams
+            );
         }
 
         if (!empty($genreIds)) {
-            $placeholders = implode(',', array_fill(0, count($genreIds), '?'));
-            $query->where("g.id IN ($placeholders)", $genreIds);
+            $genreParams = [];
+            foreach ($genreIds as $i => $id) {
+                $param = ":genre_" . $i;
+                $genreParams[$param] = $id;
+            }
+            $query->where(
+                "g.id IN (" . implode(',', array_keys($genreParams)) . ")", 
+                $genreParams
+            );
         }
         
         $query->order('b.title');
